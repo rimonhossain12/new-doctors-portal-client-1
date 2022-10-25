@@ -1,5 +1,6 @@
 import React from 'react';
 import treatment from '../../../assets/images/treatment.png';
+import PrimaryButton from '../../Shared/PrimaryButton';
 
 const Treatment = () => {
     return (
@@ -11,7 +12,7 @@ const Treatment = () => {
                     <p className="py-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                         Sint esse expedita tempora consequuntur rem, sit eligendi ratione vitae!
                         Cupiditate perferendis quasi nulla quod, repudiandae nobis possimus sit fugiat ea eveniet?</p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <PrimaryButton>Get started</PrimaryButton>
                 </div>
             </div>
         </div>

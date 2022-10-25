@@ -6,17 +6,17 @@ import About from './Pages/About/About';
 import Login from './Pages/Login/Login';
 
 function App() {
-  return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/home' element={<Home />}></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-      </Routes>
-    </div>
-  );
+	return (
+		<div>
+			<Navbar />
+			<Routes>
+				<Route path='/' element={<Home />}></Route>
+				<Route path='/home' element={<Home />}></Route>
+				<Route path='/about' element={<About />}></Route>
+				<Route path='/login' element={<Login />}></Route>
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
