@@ -10,11 +10,34 @@ const AvailableAppointments = ({ date }) => {
     const [treatment, setTreatment] = useState(null);
 
 
+    // async function getUser() {
+    //     try {
+    //         const response = await fetch('http://localhost:5000/services', {
+    //             method: 'GET',
+    //             headers: {
+    //                 content: 'application/json',
+    //             },
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error(`Error! Status ${response.status}`)
+    //         }
+    //         const result = await response.json();
+    //         console.log(result);
+    //         // return result;
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+
+
     useEffect(() => {
-        fetch('services.json')
-            .then(res => res.json())
-            .then(data => setServices(data))
+        fetch('http://localhost:5000/services')
+            .then(response => response.json())
+            .then(json => console.log(json))
     }, [])
+
+
     return (
         <div>
             <h4 className='text-xl text-secondary text-center hover:underline'>Available Appointments on {format(date, 'PP')}</h4>
