@@ -9,32 +9,29 @@ const AvailableAppointments = ({ date }) => {
     const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
-
-    // async function getUser() {
-    //     try {
-    //         const response = await fetch('http://localhost:5000/services', {
-    //             method: 'GET',
-    //             headers: {
-    //                 content: 'application/json',
-    //             },
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error(`Error! Status ${response.status}`)
+    // useEffect(() => {
+    //     async function getUser() {
+    //         try {
+    //             const response = await fetch('http://localhost:5000/services');
+    //             const result = await response.json();
+    //             console.log(result);
     //         }
-    //         const result = await response.json();
-    //         console.log(result);
-    //         // return result;
+    //         catch (err) {
+    //             console.log(err)
+    //         }
     //     }
-    //     catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
+    //     // fetch('http://localhost:5000/services')
+    //     //     .then(response => response.json())
+    //     //     .then(json => console.log(json))
+    //     getUser();
+    // }, [])
 
     useEffect(() => {
         fetch('http://localhost:5000/services')
-            .then(response => response.json())
-            .then(json => console.log(json))
+            .then(res => res.json())
+            .then(data => {
+                setServices(data)
+            })
     }, [])
 
 
