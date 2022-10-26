@@ -1,14 +1,19 @@
 import React from 'react';
 
 const Service = ({ service }) => {
-    const { name, slot } = service;
+    const { name, slots } = service;
     return (
         <div className="card lg:max-w-96 bg-base-100 shadow-xl">
             <div className="card-body">
-                <h2 className="card-title">{name}</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <h2 className="card-title text-secondary">{name}</h2>
+                <p>{
+                    slots.length
+                        ? <span>{slots[0]}</span> : <span className='text-red-500 font-thin capitalize'>Try Another day</span>
+
+                }</p>
+                <p>{slots.length} {slots.length > 1 ? 'Spaces' : 'Space'} Available</p>
                 <div className="card-actions justify-center">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <button disabled={slots.length === 0} className="btn btn-secondary text-white uppercase">Book Appointment</button>
                 </div>
             </div>
         </div>
