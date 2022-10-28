@@ -9,25 +9,9 @@ const AvailableAppointments = ({ date }) => {
     const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
-    // useEffect(() => {
-    //     async function getUser() {
-    //         try {
-    //             const response = await fetch('http://localhost:5000/services');
-    //             const result = await response.json();
-    //             console.log(result);
-    //         }
-    //         catch (err) {
-    //             console.log(err)
-    //         }
-    //     }
-    //     // fetch('http://localhost:5000/services')
-    //     //     .then(response => response.json())
-    //     //     .then(json => console.log(json))
-    //     getUser();
-    // }, [])
-
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('http://localhost:8000/services')
+        // fetch('services.json')
             .then(res => res.json())
             .then(data => {
                 setServices(data)
