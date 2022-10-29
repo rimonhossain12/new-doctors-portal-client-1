@@ -23,6 +23,7 @@ const SignUp = () => {
     const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password, data.name);
         await updateProfile({ displayName: data.name });
+        console.log(data.name, data.password, data.email);
         console.log('update done!');
         navigate('/appointment')
     };
