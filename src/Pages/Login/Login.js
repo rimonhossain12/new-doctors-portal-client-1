@@ -31,6 +31,7 @@ const Login = () => {
         signInError = <p className='text-red-500 text-thin'><small>{error?.message || gError?.message}</small></p>;
     }
 
+
     if (user || gUser) {
         console.log(user || gUser);
     }
