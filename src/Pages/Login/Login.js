@@ -25,7 +25,6 @@ const Login = () => {
                     {/* react hooks from */}
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -34,24 +33,49 @@ const Login = () => {
                                 type="email"
                                 placeholder="Your Email"
                                 className="input input-bordered w-full max-w-xs"
-                                {...register("email",
+                                {...register("email", {
+                                    required: true,
+                                    message: 'Email is required'
+                                },
                                     {
-                                        pattern: /[A-Za-z]{3}/
+                                        value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                        message: 'Provide a valid email'
                                     }
                                 )}
                                 aria-invalid={errors.email ? "true" : "false"}
                             />
                             <label className="label">
-                                <span className="label-text-alt">Alt label</span>
+                                {errors.email?.type === 'required' && <p className='text-red-500' role="alert">{error.email.message}</p>}
+                                {errors.email?.type === 'pattern' && <p className='text-red-500' role="alert">{error.email.message}</p>}
                             </label>
                         </div>
 
-                        <input
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("password", {
+                                    required: true,
+                                    message: 'Password is required'
+                                },
+                                    {
+                                        minLength: 6,
+                                        message: 'Must be 6 char or longer'
+                                    }
+                                )}
+                                aria-invalid={errors.email ? "true" : "false"}
+                            />
+                            <label className="label">
+                                {errors.password?.type === 'required' && <p className='text-red-500' role="alert">{error.email.message}</p>}
+                                {errors.password?.type === 'minLength' && <p className='text-red-500' role="alert">{error.email.message}</p>}
+                            </label>
+                        </div>
 
-                        />
-                        {errors.email?.type === 'required' && <p role="alert">correct email is required!</p>}
-
-                        <input type="submit" />
+                        <input type="submit" className='btn w-full max-w-xs' />
                     </form>
 
                     <div className="divider">OR</div>
