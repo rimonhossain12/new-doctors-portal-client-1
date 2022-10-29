@@ -24,7 +24,7 @@ const Login = () => {
 
                     {/* react hooks from */}
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -45,8 +45,8 @@ const Login = () => {
                                 aria-invalid={errors.email ? "true" : "false"}
                             />
                             <label className="label">
-                                {errors.email?.type === 'required' && <p className='text-red-500' role="alert">{error.email.message}</p>}
-                                {errors.email?.type === 'pattern' && <p className='text-red-500' role="alert">{error.email.message}</p>}
+                                {errors.email?.type === 'required' && <p className='text-red-500' role="alert">{errors.email.message}</p>}
+                                {errors.email?.type === 'pattern' && <p className='text-red-500' role="alert">{errors.email.message}</p>}
                             </label>
                         </div>
 
@@ -70,13 +70,71 @@ const Login = () => {
                                 aria-invalid={errors.email ? "true" : "false"}
                             />
                             <label className="label">
-                                {errors.password?.type === 'required' && <p className='text-red-500' role="alert">{error.email.message}</p>}
-                                {errors.password?.type === 'minLength' && <p className='text-red-500' role="alert">{error.email.message}</p>}
+                                {errors.password?.type === 'required' && <p className='text-red-500' role="alert">{errors.email.message}</p>}
+                                {errors.password?.type === 'minLength' && <p className='text-red-500' role="alert">{errors.email.message}</p>}
                             </label>
                         </div>
 
-                        <input type="submit" className='btn w-full max-w-xs' />
+                        <input type="submit" className='btn text-white w-full max-w-xs' value="Login" />
+                    </form> */}
+
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email"
+                                placeholder="Your Email"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("email",
+                                    {
+                                        required: {
+                                            value: true,
+                                            message: 'Email is required!'
+                                        },
+                                        pattern: {
+                                            value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                            message: 'Provide a valid Email'
+                                        }
+                                    }
+                                )}
+                                aria-invalid={errors.email ? "true" : "false"}
+                            />
+                            <label className="label">
+                                {errors.email?.type === 'required' && <p className='text-red-500 text-thin' role="alert">{errors.email.message}</p>}
+                                {errors.email?.type === 'pattern' && <p className='text-red-500 text-thin' role="alert">{errors.email.message}</p>}
+                            </label>
+                        </div>
+
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="password"
+                                placeholder="Type here"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("password",
+                                    {
+                                        minLength: {
+                                            value: 6,
+                                            message: 'Must be 6 character or Longer!'
+                                        }
+                                    }
+                                )}
+                                aria-invalid={errors.password ? "true" : "false"}
+                            />
+                            <label className="label">
+                                {errors.password?.type === 'required' && <p className='text-red-500 text-thin' role="alert">{errors.password.message}</p>}
+                                {errors.password?.type === 'minLength' && <p className='text-red-500 text-thin' role="alert">{errors.password.message}</p>}
+                            </label>
+                        </div>
+
+                        <input type="submit" className='btn text-white w-full max-w-xs' />
                     </form>
+
 
                     <div className="divider">OR</div>
                     <button
