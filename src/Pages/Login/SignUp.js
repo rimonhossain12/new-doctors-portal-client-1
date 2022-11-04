@@ -9,16 +9,20 @@ import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
     const { register, formState: { errors }, handleSubmit } = useForm();
+
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const [token] = useToken(user || gUser)
+    const [token] = useToken(user || gUser);
+    // console.log('token found form sign up page = ', token)
 
     const navigate = useNavigate();
 
@@ -41,6 +45,7 @@ const SignUp = () => {
     if (token) {
         navigate('/appointment');
     }
+
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
