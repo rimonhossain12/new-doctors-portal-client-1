@@ -4,6 +4,7 @@ import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 
 const SignUp = () => {
@@ -16,6 +17,9 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const [token] = useToken(user || gUser)
+
     const navigate = useNavigate();
 
     let signInError;
@@ -23,9 +27,7 @@ const SignUp = () => {
     const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password, data.name);
         await updateProfile({ displayName: data.name });
-        console.log(data.name, data.password, data.email);
-        console.log('update done!');
-        navigate('/appointment')
+
     };
 
     if (loading || gLoading || updating) {
@@ -36,8 +38,8 @@ const SignUp = () => {
         signInError = <p className='text-red-500 text-thin'><small>{error?.message || gError?.message || updateError.message}</small></p>;
     }
 
-    if (user || gUser) {
-        console.log(user || gUser);
+    if (token) {
+        navigate('/appointment');
     }
     return (
         <div className='flex h-screen justify-center items-center'>
