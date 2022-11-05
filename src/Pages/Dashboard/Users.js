@@ -5,8 +5,13 @@ import UserRow from './UserRow';
 
 const Users = () => {
 
-    const { isLoading, error, data: users } = useQuery('users', () =>
-        fetch('http://localhost:5000/allUsers').then(res => res.json())
+    const { isLoading, error, data: users, refetch } = useQuery('users', () =>
+        fetch('http://localhost:5000/allUsers', {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(res => res.json())
     )
 
     if (isLoading) {
@@ -19,7 +24,7 @@ const Users = () => {
     return (
         <div>
             <h2 className="text-2xl mb-5">
-                All user patient: {users.length}
+                All user patient =  {users.length}
             </h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
@@ -38,6 +43,7 @@ const Users = () => {
                                 key={user._id}
                                 user={user}
                                 index={index}
+                                refetch={refetch}
                             ></UserRow>)
                         }
                     </tbody>
