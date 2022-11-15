@@ -11,7 +11,7 @@ const UserRow = ({ user, index, refetch }) => {
             }
         })
             .then(res => {
-                if (res.status === 403) {
+        if (res.status === 403) {
                     toast.error('Failed to make an admin');
                     // logout and token khaiya dimu
                 }
